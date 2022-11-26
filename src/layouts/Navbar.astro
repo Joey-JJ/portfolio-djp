@@ -9,26 +9,43 @@
     <li><a href="/contact">Contact</a></li>
   </ul>
 
-  <ul class="socials">
-    <li><button id="hide">F</button></li>
-    <li><a href="#">I</a></li>
-  </ul>
+  <div class="social-links">
+    <a href="https://www.facebook.com/"
+      ><i class="fa-brands fa-facebook"></i>
+    </a>
+    <a href="https://www.instagram.com/"
+      ><i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+  <div class="hamburger">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
 </nav>
 
 <script>
-  let hidden = false;
-  document.querySelector("#hide")?.addEventListener("click", () => {
-    document
-      .querySelector(".page-links")
-      ?.setAttribute("data-state", hidden ? "" : "hidden");
-    hidden = !hidden;
+  const hamburger = document.querySelector(".hamburger");
+  const pageLinks = document.querySelector(".page-links");
+
+  hamburger?.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    pageLinks?.classList.toggle("active");
+  });
+
+  document.querySelectorAll(".page-links a")?.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger?.classList.remove("active");
+      pageLinks?.classList.remove("active");
+    });
   });
 </script>
 
 <style>
   .navbar {
     /* REMOVE */
-    background-color: beige;
+    border-bottom: 1px solid lightgrey;
 
     display: flex;
     justify-content: space-between;
@@ -44,19 +61,87 @@
   }
 
   .page-links,
-  .socials {
+  .social-links {
     display: flex;
     gap: 1rem;
     list-style: none;
   }
 
   .page-links a,
-  .socials a {
+  .social-links a {
     text-decoration: none;
     color: black;
   }
 
-  .page-links[data-state="hidden"] {
+  .social-links a {
+    font-size: 1.5rem;
+    transition: all 0.15s ease-in-out;
+  }
+
+  .social-links a:hover {
+    color: #121212;
+    transform: scale(115%);
+  }
+
+  .hamburger {
     display: none;
+    transition: all 0.3s ease;
+    z-index: 99;
+  }
+
+  .bar {
+    width: 25px;
+    height: 3px;
+    background-color: black;
+    margin: 0.25rem 0;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .social-links {
+      display: none;
+    }
+
+    .page-links {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+      text-align: center;
+      backdrop-filter: blur(2px);
+      transition: all 0.3s ease;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .page-links.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .hamburger {
+      display: block;
+    }
+
+    .hamburger:hover {
+      cursor: pointer;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
   }
 </style>
