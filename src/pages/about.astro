@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <div class="container">
+    <img
+      src="https://users-photos.b-cdn.net/162119/avatar/desireejuliephotography_1385b056-e142-4837-8a3c-5f7823f0271a.png"
+    />
+    <article class="about-section">
+      <div class="about">
+        <h2 class="title">About Desiree Julie</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque sint
+          error corporis quam ab ducimus deserunt rerum vero, vel, sunt cum sed
+          a at eveniet, aliquam doloribus cupiditate! Molestiae, quibusdam.
+        </p>
+      </div>
+      <div class="clients">
+        <h2 class="title">Clients</h2>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut unde,
+          odio, laborum reiciendis vel debitis eaque impedit delectus quis
+          corrupti quia similique aspernatur. Perferendis dolores sit enim
+          eligendi neque debitis.
+        </p>
+      </div>
+    </article>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto;
+    max-width: 25em;
+    gap: 3rem;
+  }
+
+  .container > img {
+    width: 60%;
+    height: auto;
+    object-fit: cover;
+    filter: grayscale(100%);
+  }
+
+  .about-section {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media (min-width: 60em) {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+      max-width: 80em;
+      margin-top: 5rem;
+      padding-inline: 2rem;
+    }
+  }
+</style>
